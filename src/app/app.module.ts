@@ -11,14 +11,17 @@ import { UtilisateurFormComponent } from './admin/utilisateur-form/utilisateur-f
 import { RandoFormComponent } from './admin/rando-form/rando-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {RouterModule, Routes} from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 import {AuthService} from './services/auth.service';
 import {AuthGuardService} from './services/auth-guard.service';
 import {PersonnesService} from './services/personnes.service';
 import {RandosService} from './services/randos.service';
+import { CarteComponent } from './admin/carte/carte.component';
 
 const appRoutes: Routes = [
-  { path: 'auth/signin', component: SigninComponent },
+  { path: 'carte', component: CarteComponent },
+  { path: 'auth', component: SigninComponent },
+  { path: '', component: CarteComponent }
 ];
 
 @NgModule({
@@ -29,7 +32,8 @@ const appRoutes: Routes = [
     SigninComponent,
     ListComponent,
     UtilisateurFormComponent,
-    RandoFormComponent
+    RandoFormComponent,
+    CarteComponent
   ],
   imports: [
     BrowserModule,
