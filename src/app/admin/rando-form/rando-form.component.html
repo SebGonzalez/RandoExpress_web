@@ -1,1 +1,41 @@
-<p>rando-form works!</p>
+<div class="container">
+  <div class="cadreAdmin">
+    <div class="row">
+      <h2 style="margin-bottom: 3%; text-align: center; color: white;">Modification d'un compte utilisateur</h2>
+    </div>
+    <div class="user-form">
+      <form method="post">
+
+        <fieldset>
+          <legend>Ajout/Modif/Supression d'une randonnée</legend>
+
+          <label for="id">id randonnée</label>
+          <input type="number" name="id" id="id" required/><br>
+
+          <label for="nom">Nom randonnée</label>
+          <input type="text" name="nom" id="nom" required/><br>
+
+          <label for="level">Difficulté randonnée</label>
+          <select id="level" required>
+            <option value="facile">Facile</option>
+            <option value="moyen">Moyenne</option>
+            <option value="dur">Dur</option>
+          </select><br>
+
+          <label for="latgps">Latitude Gps</label>
+          <input type="text" name="latgps" id="Latgps" required/><br>
+
+          <label for="longps">Longitude Gps</label>
+          <input type="text" name="longps" id="Longps" required/><br>
+
+          <div class="group">
+            <input type="submit" class="button" style="background-color: rgba(141,91,67,0.69); margin: auto;"
+                   value="Valider" routerLink="../admin">
+          </div>
+
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
