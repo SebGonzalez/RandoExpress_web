@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import { UserService } from '../../services/person.service';
+
 
 @Component({
   selector: 'app-signin',
@@ -8,27 +11,35 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SigninComponent implements OnInit {
 
-  authStatus: boolean;
+  signInForm: FormGroup;
+  errorMessage: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder,
+              private authService: UserService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.authStatus = this.authService.isAuth;
+    this.initForm();
   }
 
-  onSignIn() {
-    this.authService.signIn().then(
+  initForm() {
+    this.signInForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
+    });
+  }
+
+  onSubmit() {
+    const email = this.signInForm.get('email').value;
+    const password = this.signInForm.get('password').value;
+
+    this.authService.signInUser(email, password).then(
       () => {
-        console.log('Sign in successful!');
-        this.authStatus = this.authService.isAuth;
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        this.errorMessage = error;
       }
     );
   }
-
-  onSignOut() {
-    this.authService.signOut();
-    this.authStatus = this.authService.isAuth;
-  }
-
 }
-

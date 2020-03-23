@@ -1,4 +1,4 @@
 export class Personne {
-  constructor() {
+  constructor(public id: string, public mail: string, public type: string) {
   }
 }
