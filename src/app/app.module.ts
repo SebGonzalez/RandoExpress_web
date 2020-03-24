@@ -14,10 +14,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {Routes, RouterModule} from '@angular/router';
 import {AuthService} from './services/auth.service';
 import {AuthGuardService} from './services/auth-guard.service';
-import {PersonnesService} from './services/personnes.service';
 import {RandosService} from './services/randos.service';
 import {CarteComponent} from './admin/carte/carte.component';
 import {PageAdminComponent} from './admin/page-admin/page-admin.component';
+import { UserComponent } from './admin/user/user.component';
+import { SingleUserComponent } from './admin/single-user/single-user.component';
 
 const appRoutes: Routes = [
   {path: 'carte', component: CarteComponent},
@@ -25,6 +26,8 @@ const appRoutes: Routes = [
   {path: 'admin', component: PageAdminComponent},
   {path: 'rando', component: RandoFormComponent},
   {path: 'user', component: UtilisateurFormComponent},
+  {path: 'list', component: UserComponent},
+  {path: 'list/:id', component: SingleUserComponent},
   {path: '', component: CarteComponent}
 ];
 
@@ -38,7 +41,9 @@ const appRoutes: Routes = [
     UtilisateurFormComponent,
     RandoFormComponent,
     CarteComponent,
-    PageAdminComponent
+    PageAdminComponent,
+    UserComponent,
+    SingleUserComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, AuthGuardService, PersonnesService, RandosService, PageAdminComponent],
+  providers: [AuthService, AuthGuardService, RandosService, PageAdminComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,4 +1,7 @@
-﻿<h1 style="margin-bottom: 3%; text-align: center"></h1>
+﻿
+
+
+<h1 style="margin-bottom: 3%; text-align: center"></h1>
 <div class="login-wrap">
   <div class="login-html">
     <form>
@@ -26,7 +29,7 @@
               identifiants</label>
           </div>
           <div class="group">
-            <input type="submit" class="button" style="background-color: rgba(141,91,67,0.69)" value="Connexion" routerLink="../admin">
+            <input type="submit" class="button" style="background-color: rgba(141,91,67,0.69)"  value="Connexion" *ngIf="!authStatus" (click)="onSignIn()" routerLink="../admin">
           </div>
           <div class="hr"></div>
           <div class="foot-lnk">
