@@ -4,32 +4,26 @@
       <h2 style="margin-bottom: 3%; text-align: center; color: white;">Modification d'un compte utilisateur</h2>
     </div>
     <div class="user-form">
-      <form method="post">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+          <label for="nom">Nom </label>
+            <input type="text" id="nom" class="form-control" name="nom" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="prenom">prenom</label>
+          <input type="text" id="prenom" class="form-control" name="prenom" [ngModel]="defaultPrenom" required>
+        </div>
 
-        <fieldset>
-          <legend>Modification d'un profil</legend>
+        <div class="form-group">
+          <label for="mail">email</label>
+          <input type="text" id="mail" class="form-control" name="mail" ngModel required>
+        </div>
 
-          <label for="id">id</label>
-          <input type="number" name="id" id="id" required/><br>
-
-          <label for="nom">Nom</label>
-          <input type="text" name="nom" id="nom" required/><br>
-
-          <label for="prenom">Prénom</label>
-          <input type="text" name="prenom" id="prenom" required/><br>
-
-          <label for="email">Adresse mail</label>
-          <input type="email" name="email" id="email" required/><br>
-
-          <label for="password">Mot de passe</label>
-          <input type="password" name="password" id="password" required/><br>
-
-          <div class="group">
-            <input type="submit" class="button" style="background-color: rgba(141,91,67,0.69); margin: auto;"
-                   value="Valider" onclick="hidePopup();">
-          </div>
-
-        </fieldset>
+        <div class="form-group">
+          <label for="password">password</label>
+          <input type="password" id="password" class="form-control" name="password" ngModel required>
+        </div>
+        <button type="submit" class="btn-primary" [disabled]="f.invalid">Enregistrer</button>
       </form>
     </div>
   </div>
