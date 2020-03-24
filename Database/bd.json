@@ -1,0 +1,46 @@
+[
+    {
+        "owner": {
+            "firstName": "Sébastien",
+            "password": "azerty",
+            "mail": "lamblino@hotmail.fr",
+            "name": "Lamblino",
+            "id": 1
+        },
+        "persons": [
+            {
+                "firstName": "Vadym",
+                "password": "azerty",
+                "mail": "vadym@android.fr",
+                "name": "Vadym",
+                "id": 2
+            }
+        ],
+        "ville": "Marseille",
+        "latitude": "43.232230",
+        "name": "Calanque Luminy",
+        "description": "Magnifique randonné dans les calanques de Marseille",
+        "id": 3,
+        "dateDepart": "20/05/2020",
+        "heureDepart": "16:15",
+        "longitude": "5.435990"
+    },
+    {
+        "owner": {
+            "firstName": "Sébastien",
+            "password": "azerty",
+            "mail": "lamblino@hotmail.fr",
+            "name": "Lamblino",
+            "id": 1
+        },
+        "persons": [],
+        "ville": "Marseille",
+        "latitude": "43.288593",
+        "name": "Randonné cool",
+        "description": "Magnifique randonné dans Marseille",
+        "id": 4,
+        "dateDepart": "20/03/2020",
+        "heureDepart": "08:30",
+        "longitude": "5.370514"
+    }
+]

@@ -15,6 +15,17 @@ export class CarteComponent implements OnInit {
   Ez = 'Facile';
   Midle = 'Moyenne';
   isAuth = false;
+
+  ListeRando = [
+    {
+      id: 1,
+      nom: 'Calanque Luminy'
+    },
+    {
+      id: 2,
+      nom: 'Parc du Mont Boron'
+    }
+  ];
   ngOnInit() {
     // Déclaration de la carte avec les coordonnées du centre
     const myfrugalmap = L.map('frugalmap').locate({setView: true, maxZoom: 16});
@@ -29,11 +40,7 @@ export class CarteComponent implements OnInit {
       iconUrl: 'http://leafletjs.com/examples/custom-icons/leaf-orange.png'
     });
     // Les différents endroits que l'on a marqué
-    L.marker([43.227462, 5.4381482], {icon: ImageMidle})
-      .bindPopup('<h5>La rando de Bouclema</h5><br>Difficulté : Moyenne').addTo(myfrugalmap).openPopup();
     L.marker([44.227462, 5.4381482], {icon: ImageEz})
-      .bindPopup('<h5><b>La randodo</b></h5><br>Difficulté : Facile').addTo(myfrugalmap).openPopup();
-    L.marker([44.227462, 6.4381482], {icon: ImageEz})
       .bindPopup('<h5><b>La randodo</b></h5><br>Difficulté : Facile').addTo(myfrugalmap).openPopup();
     L.marker([44.227462, 6], {icon: ImageMidle})
       .bindPopup('<h5><b>La rando de Bouclema</b></h5><br>Difficulté : Moyenne').addTo(myfrugalmap).openPopup();
@@ -52,6 +59,10 @@ export class CarteComponent implements OnInit {
   }
   getDifficulteEz() {
     return this.Ez;
+  }
+
+  getDifficulteMidle() {
+    return this.Midle;
   }
 
 }

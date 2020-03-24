@@ -20,8 +20,8 @@
 
         <h3 style="text-align: center;">Liste des randonnées</h3>
         <input type="number" class="form-control">
-
-        <button class="btn btn-success" [disabled]="!isAuth"> validation</button>
+        <p *ngFor="let rando of ListeRando">Nom de la randonnée : {{ rando.nom}}
+          <input type="submit" class="button" value="Informations"></p>
         </div>
       </div>
     </div>
