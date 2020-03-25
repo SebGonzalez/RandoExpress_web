@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/person.service';
 import {ActivatedRoute} from '@angular/router';
+import {PersonsService} from '../../services/person.service';
 
 @Component({
   selector: 'app-single-user',
@@ -9,20 +9,20 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class SingleUserComponent implements OnInit {
 
-  nom: string = 'nom';
-  prenom: string = 'prenom';
-  mail: string = 'mail';
-  password: string = 'password';
+  nom: string;
+  prenom: string;
+  mail: string;
+  password: string;
 
-  constructor(private userService: UserService,
+  constructor(private personsService: PersonsService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
       const id = this.route.snapshot.params.id;
-      this.nom = this.userService.getUserById(+id).name;
-      this.prenom = this.userService.getUserById(+id).firstName;
-      this.mail = this.userService.getUserById(+id).mail;
-      this.password = this.userService.getUserById(+id).password;
+      this.nom = this.personsService.getUserById(+id).name;
+      this.prenom = this.personsService.getUserById(+id).firstName;
+      this.mail = this.personsService.getUserById(+id).mail;
+      this.password = this.personsService.getUserById(+id).password;
   }
 
 }

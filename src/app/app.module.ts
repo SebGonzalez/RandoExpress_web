@@ -25,6 +25,7 @@ import { ListRandoComponent } from './admin/list-rando/list-rando.component';
 import { NewRandoComponent } from './admin/new-rando/new-rando.component';
 import { SingleRandoComponent } from './admin/single-rando/single-rando.component';
 import {UserService} from './services/user.service';
+import {PersonsService} from './services/person.service';
 
 const appRoutes: Routes = [
   {path: 'carte', component: CarteComponent},
@@ -68,7 +69,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, AuthGuardService, RandosService, UserService, PageAdminComponent],
+  providers: [AuthService, AuthGuardService, RandosService, UserService, PersonsService, PageAdminComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
