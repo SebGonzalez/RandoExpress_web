@@ -1,7 +1,7 @@
 export class Personne {
   constructor(public id: number,
-              public nom: string,
-              public prenom: string,
+              public name: string,
+              public firstName: string,
               public mail: string,
               public password: string
   ) {

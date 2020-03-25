@@ -12,15 +12,15 @@ export class UserService {
   users: Personne[] = [
     {
       id: 1,
-      nom: 'Gonzo',
-      prenom: 'Sébastien',
+      name: 'Gonzo',
+      firstName: 'Sébastien',
       mail: 'gonzo@hotmail.fr',
       password: 'azerty'
     },
     {
       id: 2,
-      nom: 'Moi',
-      prenom: 'Sébastien',
+      name: 'Moi',
+      firstName: 'Sébastien',
       mail: 'lamblino@hotmail.fr',
       password: 'azerty'
     }

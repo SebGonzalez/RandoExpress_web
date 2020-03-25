@@ -19,8 +19,8 @@ export class SingleUserComponent implements OnInit {
 
   ngOnInit() {
       const id = this.route.snapshot.params.id;
-      this.nom = this.userService.getUserById(+id).nom;
-      this.prenom = this.userService.getUserById(+id).prenom;
+      this.nom = this.userService.getUserById(+id).name;
+      this.prenom = this.userService.getUserById(+id).firstName;
       this.mail = this.userService.getUserById(+id).mail;
       this.password = this.userService.getUserById(+id).password;
   }
