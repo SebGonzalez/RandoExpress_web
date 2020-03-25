@@ -3,11 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Personne} from '../models/personne.model';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Subject} from 'rxjs';
-<<<<<<< HEAD
-import {AbstractControl, ValidationErrors} from "@angular/forms";
-=======
+import {AbstractControl, ValidationErrors} from '@angular/forms';
 import {UserService} from './user.service';
->>>>>>> d74ddbef5b5dd40c5479d96d7b5ef3b9198c01d4
 
 @Injectable({
   providedIn: 'root'
