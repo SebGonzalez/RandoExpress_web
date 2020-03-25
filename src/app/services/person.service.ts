@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Personne} from '../models/personne.model';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Subject} from 'rxjs';
+import {AbstractControl, ValidationErrors} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,22 @@ export class UserService {
   addPersonne(user: Personne) {
     this.users.push(user);
     this.emitUser();
+  }
+
+  updateUtilisateur(id: number, nom: (string | ((control: AbstractControl) => (ValidationErrors | null)))[] | string | string, prenom: (string | ((control: AbstractControl) => (ValidationErrors | null)))[] | string | string, mail: (string | ((control: AbstractControl) => (ValidationErrors | null))[])[] | string | string, password: (string | ((control: AbstractControl) => (ValidationErrors | null)))[] | string | string) {
+    // @ts-ignore
+    const user = new Personne(id);
+    this.users[+id] = user;
+    this.emitUser();
+    this.httpClient
+      .put('http://localhost:4200/new-user/' + id, user)
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
   }
 }

@@ -3,8 +3,10 @@
 
   <li class="list-group-item"
       *ngFor="let user of users">
-    <a [routerLink]="[user.id]">
 <h3> nom {{user.nom}} prenom {{user.prenom}}</h3>
-    <p>mail {{user.mail}}</p></a>
+    <p>mail {{user.mail}}</p>
+    <a [routerLink]="[user.id]">Détail profil</a>
+
+    <button class="bouton-edit" (click)="onEditUser(user.id)">Edition du profil</button>
   </li>
 </div>
