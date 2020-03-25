@@ -16,8 +16,8 @@ import {PersonsService} from '../../services/person.service';
 
 export class UserComponent implements OnInit {
 
-  @Input() nom: string;
-  @Input() prenom: string;
+  @Input() name: string;
+  @Input() firstName: string;
   @Input() mail: string;
   @Input() password: string;
   @Input() id: number;

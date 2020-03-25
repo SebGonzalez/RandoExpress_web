@@ -1,7 +1,7 @@
 <ul class="list-group">
   <app-user  *ngFor="let user of Personne; let i = index"
-             [nom]="user.nom"
-             [prenom]="user.prenom"
+             [name]="user.nom"
+             [firstName]="user.prenom"
              [mail]="user.mail"
              [id]="user.id"></app-user>
 </ul>

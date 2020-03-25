@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Personne} from '../models/personne.model';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
@@ -15,13 +15,13 @@ export class PersonsService {
   userSubject = new Subject<Personne[]>();
 
   constructor(private httpClient: HttpClient, private router: Router, private userService: UserService) {
-  this.getPersonsFromBack();
+    this.getPersonsFromBack();
   }
 
   getPersonsFromBack() {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         Authorization: this.userService.jwt
       })
     };
@@ -58,9 +58,9 @@ export class PersonsService {
     this.emitUser();
   }
 
-  updateUtilisateur(id: number, nom: (string | ((control: AbstractControl) => (ValidationErrors | null)))[] | string | string, prenom: (string | ((control: AbstractControl) => (ValidationErrors | null)))[] | string | string, mail: (string | ((control: AbstractControl) => (ValidationErrors | null))[])[] | string | string, password: (string | ((control: AbstractControl) => (ValidationErrors | null)))[] | string | string) {
-    // @ts-ignore
-    const user = new Personne(id);
+  updatePersonne(id: number, name: string, firstName: string, mail: string, password: string) {
+
+    const user = new Personne(id, name, firstName, mail, password);
     this.users[+id] = user;
     this.emitUser();
     this.httpClient

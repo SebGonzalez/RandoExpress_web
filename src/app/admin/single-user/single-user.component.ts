@@ -10,8 +10,8 @@ import {PersonsService} from '../../services/person.service';
 })
 export class SingleUserComponent implements OnInit {
 
-  nom: string;
-  prenom: string;
+  name: string;
+  firstName: string;
   mail: string;
   password: string;
 
@@ -20,8 +20,8 @@ export class SingleUserComponent implements OnInit {
 
   ngOnInit() {
       const id = this.route.snapshot.params.id;
-      this.nom = this.personsService.getUserById(+id).name;
-      this.prenom = this.personsService.getUserById(+id).firstName;
+      this.name = this.personsService.getUserById(+id).name;
+      this.firstName = this.personsService.getUserById(+id).firstName;
       this.mail = this.personsService.getUserById(+id).mail;
       this.password = this.personsService.getUserById(+id).password;
   }
