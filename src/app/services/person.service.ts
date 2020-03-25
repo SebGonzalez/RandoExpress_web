@@ -27,7 +27,7 @@ export class PersonsService {
 
     console.log('Lecture des ref :');
     this.httpClient
-      .get<Personne[]>('http://localhost:4200/RandoExpress_API/ws/rest/randos', httpOptions)
+      .get<Personne[]>('http://localhost:4200/RandoExpress_API/ws/rest/personnes', httpOptions)
       .subscribe(
         (response) => {
           this.users = response;
