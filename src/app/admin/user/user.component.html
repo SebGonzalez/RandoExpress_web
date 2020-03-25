@@ -1,3 +1,7 @@
-
-<li *ngFor="let user of Personne">  {{ user.id }} {{ user.nom }} {{ user.prenom }}  {{ user.mail }}  {{ user.password}}</li>
-
+<ul class="list-group">
+  <app-user  *ngFor="let user of Personne; let i = index"
+             [nom]="user.nom"
+             [prenom]="user.prenom"
+             [mail]="user.mail"
+             [id]="user.id"></app-user>
+</ul>

@@ -1,4 +1,10 @@
 export class Personne {
-  constructor(public id: string, public mail: string, public type: string) {
+  constructor(public id: number,
+              public nom: string,
+              public prenom: string,
+              public mail: string,
+              public password: string
+  ) {
   }
 }
+

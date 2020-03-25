@@ -1,5 +1,6 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import {Component, Input, NgModule, OnInit} from '@angular/core';
 import {UserService} from '../../services/person.service';
+import {Personne} from '../../models/personne.model';
 
 @Component({
   selector: 'app-user',
@@ -15,8 +16,14 @@ import {UserService} from '../../services/person.service';
 
 export class UserComponent implements OnInit {
 
+  @Input() nom: string;
+  @Input() prenom: string;
+  @Input() mail: string;
+  @Input() password: string;
+  @Input() id: number;
+
   isAuth = false;
-  Personne: any[];
+  Personne: any;
 
   constructor(private userservice: UserService) {
     setTimeout(
@@ -26,8 +33,6 @@ export class UserComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    this.Personne = this.userservice.Personne;
+  ngOnInit(): void {
   }
-
 }

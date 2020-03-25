@@ -25,7 +25,7 @@ export class UtilisateurFormComponent implements OnInit {
     const prenom = form.value.prenom;
     const mail = form.value.mail;
     const password = form.value.password;
-    this.userService.addPersonne(nom, prenom, mail, password);
+   /* this.userService.addPersonne(nom, prenom, mail, password);*/
     this.router.navigate(['/list']);
   }
 

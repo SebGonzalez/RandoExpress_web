@@ -1,0 +1,40 @@
+<div class="col-sm-8 col-sm-offset-2">
+  <form [formGroup]="randoForm" (ngSubmit)="onSubmitForm()">
+    <div class="form-group">
+      <label for="nom"> Nom de la randonnée</label>
+      <input type="text" class="form-control" id="nom" formControlName="nom">
+    </div>
+
+    <div class="form-group">
+      <label for="ville">ville</label>
+      <input type="text" class="form-control" id="ville" formControlName="ville">
+    </div>
+
+    <div class="form-group">
+      <label for="description">description</label>
+      <input type="text" class="form-control" id="description" formControlName="description">
+    </div>
+
+    <div class="form-group">
+      <label for="heureDepart">heure de Depart</label>
+      <input type="text" class="form-control" id="heureDepart" formControlName="heureDepart">
+    </div>
+
+    <div class="form-group">
+      <label for="dateDepart">date Depart</label>
+      <input type="text" class="form-control" id="dateDepart" formControlName="dateDepart">
+    </div>
+
+    <div class="form-group">
+      <label for="longitude">longitude</label>
+      <input type="text" class="form-control" id="longitude" formControlName="longitude">
+    </div>
+
+    <div class="form-group">
+      <label for="lattitude">lattitude</label>
+      <input type="text" class="form-control" id="lattitude" formControlName="lattitude">
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="randoForm.invalid">Soumettre</button>
+  </form>
+</div>

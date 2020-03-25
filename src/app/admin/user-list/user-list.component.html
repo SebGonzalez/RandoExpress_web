@@ -1,0 +1,10 @@
+<a routerLink="/new-user">Nouvelle utilisateur</a>
+<div class="list-group">
+
+  <li class="list-group-item"
+      *ngFor="let user of users">
+    <a [routerLink]="[user.id]">
+<h3> nom {{user.nom}} prenom {{user.prenom}}</h3>
+    <p>mail {{user.mail}}</p></a>
+  </li>
+</div>

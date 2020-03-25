@@ -9,59 +9,42 @@ import {Subject} from 'rxjs';
 })
 
 export class UserService {
-  PersonneSubject = new Subject<any[]>();
-
-    Personne = [
+  users: Personne[] = [
     {
       id: 1,
       nom: 'Gonzo',
-      prenom: 'Seb',
-      mail: 'gonzolito@hotmail.fr',
+      prenom: 'Sébastien',
+      mail: 'gonzo@hotmail.fr',
       password: 'azerty'
     },
     {
       id: 2,
-      nom: 'Lamblino',
+      nom: 'Moi',
       prenom: 'Sébastien',
       mail: 'lamblino@hotmail.fr',
       password: 'azerty'
-    },
-    {
-      id: 3,
-      nom: 'Roshka',
-      prenom: 'Vadym',
-      mail: 'vadym@hotmail.fr',
-      password: 'azerty'
-    },
+    }
   ];
+  userSubject = new Subject<Personne[]>();
+
   constructor(private httpClient: HttpClient, private router: Router) {
   }
 
-  emitAppareilSubject() {
-    this.PersonneSubject.next(this.Personne.slice());
+  emitUser() {
+    this.userSubject.next(this.users.slice());
   }
 
-  getUserId(id: number) {
-    const user = this.Personne.find(PersonneObject => {
-      return PersonneObject.id == id;
-    });
+  getUserById(id: number) {
+    const user = this.users.find(
+      (s) => {
+        return s.id === id;
+      }
+    );
     return user;
   }
 
-  addPersonne(nom: string, prenom: string, mail: string, password: string) {
-    const PersonneSubject = {
-      id: 0,
-      nom: '',
-      prenom: '',
-      mail: '',
-      password: ''
-    };
-    PersonneSubject.nom = nom;
-    PersonneSubject.prenom = prenom;
-    PersonneSubject.mail = mail;
-    PersonneSubject.password = password;
-    PersonneSubject.id = this.Personne[(this.Personne.length - 1)].id + 1;
-    this.Personne.push(PersonneSubject);
-    this.emitAppareilSubject();
+  addPersonne(user: Personne) {
+    this.users.push(user);
+    this.emitUser();
   }
 }

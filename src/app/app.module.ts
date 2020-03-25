@@ -19,6 +19,11 @@ import {CarteComponent} from './admin/carte/carte.component';
 import {PageAdminComponent} from './admin/page-admin/page-admin.component';
 import { UserComponent } from './admin/user/user.component';
 import { SingleUserComponent } from './admin/single-user/single-user.component';
+import { UserListComponent } from './admin/user-list/user-list.component';
+import { NewUserComponent } from './admin/new-user/new-user.component';
+import { ListRandoComponent } from './admin/list-rando/list-rando.component';
+import { NewRandoComponent } from './admin/new-rando/new-rando.component';
+import { SingleRandoComponent } from './admin/single-rando/single-rando.component';
 
 const appRoutes: Routes = [
   {path: 'carte', component: CarteComponent},
@@ -26,8 +31,13 @@ const appRoutes: Routes = [
   {path: 'admin', component: PageAdminComponent},
   {path: 'rando', component: RandoFormComponent},
   {path: 'user', component: UtilisateurFormComponent},
-  {path: 'list', component: UserComponent},
+  {path: 'test', component: UserComponent},
+  {path: 'list', component: UserListComponent},
   {path: 'list/:id', component: SingleUserComponent},
+  {path: 'list-rando/:id', component: SingleRandoComponent},
+  {path: 'new-user', component: NewUserComponent},
+  {path: 'new-rando', component: NewRandoComponent},
+  {path: 'list-rando', component: ListRandoComponent},
   {path: '', component: CarteComponent}
 ];
 
@@ -43,7 +53,12 @@ const appRoutes: Routes = [
     CarteComponent,
     PageAdminComponent,
     UserComponent,
-    SingleUserComponent
+    SingleUserComponent,
+    UserListComponent,
+    NewUserComponent,
+    ListRandoComponent,
+    NewRandoComponent,
+    SingleRandoComponent,
   ],
   imports: [
     BrowserModule,
