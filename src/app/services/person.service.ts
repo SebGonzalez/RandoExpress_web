@@ -44,6 +44,10 @@ export class PersonsService {
     this.userSubject.next(this.users.slice());
   }
 
+  getSingleUser(id: number) {
+    return this.users[id];
+  }
+
   getUserById(id: number) {
     const user = this.users.find(
       (s) => {

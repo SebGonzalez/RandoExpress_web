@@ -1,15 +1,20 @@
 <a routerLink="/new-user">Nouvelle utilisateur</a>
 <div class="list-group">
 
-  <li class="list-group-item"
-      *ngFor="let user of users">
 
-    <a [routerLink]="[user.id]">
-      <h3> nom {{user.name}} prenom {{user.firstName}}</h3>
-      <p>mail {{user.mail}}</p></a>
-    <a [routerLink]="[user.id]">Détail profil</a>
+  <div *ngFor="let user of users">
+    <div *ngIf="user">
+      <li class="list-group-item">
+        <a [routerLink]="[user.id]">
+          <h3> {{user.name}}{{user.firstName}}</h3>
+          <p>{{user.mail}}</p></a>
+        <a [routerLink]="[user.id]">Détail profil</a>
 
-    <button class="bouton-edit" (click)="onEditUser(user.id)">Edition du profil</button>
+        <button class="bouton-edit" (click)="onEditUser(user.id)">Edition du profil</button>
 
-  </li>
+        <button class="bouton-edit" (click)="onDeleteUser(users, user.id)">Supression du profil du profil</button>
+      </li>
+    </div>
+  </div>
+
 </div>

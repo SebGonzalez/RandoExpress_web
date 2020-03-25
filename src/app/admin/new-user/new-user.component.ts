@@ -22,6 +22,11 @@ export class NewUserComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
+    if (this.id) {
+      this.userEdit = this.personsService.getSingleUser(this.id);
+    } else {
+      this.userEdit = new Personne(0, '', '', '' , '');
+    }
     this.initForm();
   }
 
@@ -39,7 +44,7 @@ export class NewUserComponent implements OnInit {
   onSubmitForm(id: number, name: string, firstName: string, mail: string, password: string) {
     const formValue = this.userForm.value;
     if (this.id) {
-      this.personsService.updatePersonne(formValue.id, formValue.name, formValue.firstName, formValue.mail, formValue.password);
+      this.personsService.updatePersonne(this.id, formValue.name, formValue.firstName, formValue.mail, formValue.password);
       this.router.navigate(['/list']);
     } else {
       const NewUser = new Personne(

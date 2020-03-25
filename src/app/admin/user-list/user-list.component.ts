@@ -17,7 +17,9 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   constructor(private personsService: PersonsService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) {
+  }
+
   ngOnInit() {
     this.userSubcription = this.personsService.userSubject.subscribe(
       (users: Personne[]) => {
@@ -26,13 +28,21 @@ export class UserListComponent implements OnInit, OnDestroy {
     );
     this.personsService.emitUser();
   }
+
   ngOnDestroy() {
     this.userSubcription.unsubscribe();
   }
 
-
   onEditUser(id: number) {
     this.router.navigate(['/new-user', id]);
+  }
+
+  onDeleteUser(users: Personne[], id: number) {
+    const tmp = id - 1;
+    // tslint:disable-next-line:no-unused-expression
+    // @ts-ignore
+    delete users[tmp];
+    this.router.navigate(['/list']);
   }
 
 }
