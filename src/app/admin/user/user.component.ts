@@ -1,6 +1,6 @@
 import {Component, Input, NgModule, OnInit} from '@angular/core';
-import {UserService} from '../../services/person.service';
 import {Personne} from '../../models/personne.model';
+import {PersonsService} from '../../services/person.service';
 
 @Component({
   selector: 'app-user',
@@ -10,7 +10,7 @@ import {Personne} from '../../models/personne.model';
 
 @NgModule({
   providers: [
-    UserService
+    PersonsService
   ]
 })
 
@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
   isAuth = false;
   Personne: any;
 
-  constructor(private userservice: UserService) {
+  constructor(private userservice: PersonsService) {
     setTimeout(
       () => {
         this.isAuth = true;

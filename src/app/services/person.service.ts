@@ -1,34 +1,46 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Personne} from '../models/personne.model';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Subject} from 'rxjs';
+<<<<<<< HEAD
 import {AbstractControl, ValidationErrors} from "@angular/forms";
+=======
+import {UserService} from './user.service';
+>>>>>>> d74ddbef5b5dd40c5479d96d7b5ef3b9198c01d4
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserService {
-  users: Personne[] = [
-    {
-      id: 1,
-      nom: 'Gonzo',
-      prenom: 'Sébastien',
-      mail: 'gonzo@hotmail.fr',
-      password: 'azerty'
-    },
-    {
-      id: 2,
-      nom: 'Moi',
-      prenom: 'Sébastien',
-      mail: 'lamblino@hotmail.fr',
-      password: 'azerty'
-    }
-  ];
+export class PersonsService {
+  users: Personne[] = [];
   userSubject = new Subject<Personne[]>();
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router, private userService: UserService) {
+  this.getPersonsFromBack();
+  }
+
+  getPersonsFromBack() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: this.userService.jwt
+      })
+    };
+
+    console.log('Lecture des ref :');
+    this.httpClient
+      .get<Personne[]>('http://localhost:4200/RandoExpress_API/ws/rest/personnes', httpOptions)
+      .subscribe(
+        (response) => {
+          this.users = response;
+          this.emitUser();
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
   }
 
   emitUser() {

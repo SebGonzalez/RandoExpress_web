@@ -1,34 +1,48 @@
 import { Injectable } from '@angular/core';
 import {Personne} from '../models/personne.model';
 import {Rando} from '../models/rando.model';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RandosService {
 
-  randonne: Rando[] = [
-    {
-      id: 1,
-      ville: 'Marseille',
-      nom: 'Calanque Luminy',
-      longitude: '5.435990',
-      description: 'Magnifique randonné dans les calanques de Marseille',
-      dateDepart: '20/05/2020',
-      heureDepart: '16:15',
-      lattitude: '43.232230',
-    }
-];
+  randonne: Rando[] = [];
   randoSubject = new Subject<Rando[]>();
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router, private userService: UserService) {
+    this.getUsersFromBack();
+  }
+
+  getUsersFromBack() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: this.userService.jwt
+      })
+    };
+
+    console.log('Lecture des ref :');
+    this.httpClient
+      .get<Rando[]>('http://localhost:4200/RandoExpress_API/ws/rest/randos', httpOptions)
+      .subscribe(
+        (response) => {
+          this.randonne = response;
+          this.emitRando();
+          console.log(this.randonne);
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
   }
 
   emitRando() {
-    this.randoSubject.next(this.randonne.slice());
+    this.randoSubject.next(this.randonne);
   }
 
   getRandoById(id: number) {

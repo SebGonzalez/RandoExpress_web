@@ -1,12 +1,16 @@
+import {Personne} from './personne.model';
+
 export class Rando {
   constructor(public id: number,
-              public longitude: string,
-              public ville: string,
-              public nom: string,
+              public name: string,
               public description: string,
+              public ville: string,
               public dateDepart: string,
               public heureDepart: string,
-              public lattitude: string
+              public latitude: string,
+              public longitude: string,
+              public owner: Personne,
+              public persons: Personne[]
   ) {
 
   }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {UserService} from '../../services/person.service';
 import {Router} from '@angular/router';
 import * as rxjs from 'rxjs';
+import {PersonsService} from '../../services/person.service';
 
 
 
@@ -14,7 +14,7 @@ import * as rxjs from 'rxjs';
 export class UtilisateurFormComponent implements OnInit {
 
     defaultPrenom = 'Gerard';
-  constructor(private userService: UserService,
+  constructor(private personsService: PersonsService,
               private router: Router) { }
 
   ngOnInit() {
