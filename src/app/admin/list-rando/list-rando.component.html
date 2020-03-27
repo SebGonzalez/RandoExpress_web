@@ -1,10 +1,11 @@
 <a routerLink="/new-rando">Nouvelle Randonnée</a>
 <div class="list-group">
-
-  <li class="list-group-item"
-      *ngFor="let randodo of rando">
-    <a [routerLink]="[randodo.id]">
+  <div *ngFor="let randodo of rando">
+  <li class="list-group-item">
       <h3> nom : {{randodo.name}} Ville: {{randodo.ville}}</h3>
-      <p>Description :  {{randodo.description}}</p></a>
+      <p>Description :  {{randodo.description}}</p>
+    <a [routerLink]="[randodo.id]">Détails</a>
+    <button class="bouton-edit" (click)="onEditRando(randodo.id)">Edition du profil</button>
   </li>
+  </div>
 </div>

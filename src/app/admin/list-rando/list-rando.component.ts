@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Personne} from '../../models/personne.model';
 import {Subscription} from 'rxjs';
 import {RandosService} from '../../services/randos.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Rando} from '../../models/rando.model';
 
 @Component({
@@ -15,7 +15,8 @@ export class ListRandoComponent implements OnInit {
   rando: Rando[];
   randoSubcription: Subscription;
   constructor(private randoService: RandosService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.randoSubcription = this.randoService.randoSubject.subscribe(
@@ -28,6 +29,11 @@ export class ListRandoComponent implements OnInit {
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnDestroy() {
     this.randoSubcription.unsubscribe();
+  }
+
+  onEditRando(id: number) {
+    console.log('onEditRando : id', id);
+    this.router.navigate(['/new-rando', id]);
   }
 
 }

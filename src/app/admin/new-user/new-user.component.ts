@@ -23,19 +23,20 @@ export class NewUserComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
     if (this.id) {
-      this.userEdit = this.personsService.getSingleUser(this.id);
+      this.userEdit = this.personsService.getSingleUser(this.id - 1);
+      console.log('this.useredit', this.userEdit);
     } else {
-      this.userEdit = new Personne(0, '', '', '' , '');
+      this.userEdit = new Personne(0, '', '', '', '');
     }
     this.initForm();
   }
 
   initForm() {
     this.userForm = this.formBuilder.group({
-        id: 0,
-        name: ['', Validators.required],
-        firstName: ['', Validators.required],
-        mail: ['', [Validators.required, Validators.email]],
+        id : [this.userEdit.id],
+        name: [this.userEdit.name, Validators.required],
+        firstName: [this.userEdit.firstName, Validators.required],
+        mail: [this.userEdit.mail, [Validators.required, Validators.email]],
         password: ['', Validators.required]
       }
     );
@@ -43,9 +44,11 @@ export class NewUserComponent implements OnInit {
 
   onSubmitForm(id: number, name: string, firstName: string, mail: string, password: string) {
     const formValue = this.userForm.value;
+
     if (this.id) {
-      this.personsService.updatePersonne(this.id, formValue.name, formValue.firstName, formValue.mail, formValue.password);
+      this.personsService.updatePersonne(this.userEdit.id - 1 , formValue.name, formValue.firstName, formValue.mail, formValue.password);
       this.router.navigate(['/list']);
+      return true;
     } else {
       const NewUser = new Personne(
         formValue.id = this.personsService.users[this.personsService.users.length - 1].id + 1,

@@ -40,6 +40,7 @@ const appRoutes: Routes = [
   {path: 'new-user', component: NewUserComponent},
   {path: 'new-user/:id', component: NewUserComponent},
   {path: 'new-rando', component: NewRandoComponent},
+  {path: 'new-rando/:id', component: NewRandoComponent},
   {path: 'list-rando', component: ListRandoComponent},
   {path: '', component: CarteComponent}
 ];
