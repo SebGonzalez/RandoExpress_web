@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RandosService} from '../../services/randos.service';
-import {Router} from '@angular/router';
-import {Personne} from '../../models/personne.model';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Rando} from '../../models/rando.model';
 
 @Component({
@@ -13,43 +12,63 @@ import {Rando} from '../../models/rando.model';
 export class NewRandoComponent implements OnInit {
 
   randoForm: FormGroup;
+  id: number;
+  randoEdit: Rando;
 
   constructor(private formBuilder: FormBuilder,
               private randoService: RandosService,
+              private route: ActivatedRoute,
               private router: Router) {
   }
 
   ngOnInit() {
+    this.id = this.route.snapshot.params.id;
+    if (this.id) {
+      this.randoEdit = this.randoService.getRandoById(this.id);
+    } else {
+      this.randoEdit = new Rando(0, '', '', '', '',
+        '', '', '');
+    }
     this.initForm();
   }
 
   initForm() {
     this.randoForm = this.formBuilder.group({
-        id: 0,
-        ville: ['', Validators.required],
-        nom: ['', Validators.required],
-        description: ['', Validators.required],
-        longitude: ['', Validators.required],
-        lattitude: ['', Validators.required],
-        dateDepart: ['', Validators.required],
-        heureDepart: ['', Validators.required]
+        name: [''],
+        ville: [''],
+        description: [''],
+        latitude: [''],
+        longitude: [''],
+        heureDepart: [''],
+        dateDepart: ['']
       }
     );
   }
+
   onSubmitForm() {
     const formValue = this.randoForm.value;
-    // @ts-ignore
-    const NewRando = new Rando(
-      formValue.id = this.randoService.randonne[this.randoService.randonne.length - 1].id + 1,
-      formValue.nom,
-      formValue.ville,
-      formValue.description,
-      formValue.longitude,
-      formValue.lattitude,
-      formValue.dateDepart,
-      formValue.heureDepart
-    );
-    this.randoService.addRando(NewRando);
-    this.router.navigate(['/list-rando']);
+    if (this.id) {
+      console.log('formValue', formValue.id);
+      console.log('formValue', formValue);
+      this.randoService.updateRando(this.id, formValue.name, formValue.ville,
+        formValue.description, formValue.latitude, formValue.longitude,
+        formValue.heureDepart, formValue.dateDepart);
+      this.router.navigate(['/list-rando']);
+
+    } else {
+      const NewRando = new Rando(
+        formValue.id = this.randoService.randonne[this.randoService.randonne.length - 1].id + 1,
+        formValue.name,
+        formValue.ville,
+        formValue.description,
+        formValue.latitude,
+        formValue.longitude,
+        formValue.heureDepart,
+        formValue.dateDepart
+      );
+
+      this.randoService.addRando(NewRando);
+      this.router.navigate(['/list-rando']);
+    }
   }
 }

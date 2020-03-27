@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Personne} from '../models/personne.model';
 import {Rando} from '../models/rando.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -21,7 +21,7 @@ export class RandosService {
   getUsersFromBack() {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         Authorization: this.userService.jwt
       })
     };
@@ -42,7 +42,11 @@ export class RandosService {
   }
 
   emitRando() {
-    this.randoSubject.next(this.randonne);
+    this.randoSubject.next(this.randonne.slice());
+  }
+
+  getSingleRando(id: number) {
+    return this.randonne[id];
   }
 
   getRandoById(id: number) {
@@ -57,6 +61,24 @@ export class RandosService {
   addRando(rando: Rando) {
     this.randonne.push(rando);
     this.emitRando();
+  }
+
+  updateRando(id: number, name: string, ville: string, description: string, latitude: string,
+              longitude: string, heureDepart: string, dateDepart: string) {
+    const rando = new Rando(id, name, ville, latitude, description, longitude, heureDepart, dateDepart);
+    console.log('randododododo', rando);
+    this.randonne[id] = rando;
+    this.emitRando();
+    this.httpClient
+      .put('http://localhost:4200/list-rando/' + id, rando)
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
   }
 }
 

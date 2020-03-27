@@ -34,13 +34,14 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   onEditUser(id: number) {
+    const tmp = id - 1;
+    console.log('id : edition', id)
     this.router.navigate(['/new-user', id]);
   }
 
   onDeleteUser(users: Personne[], id: number) {
     const tmp = id - 1;
     // tslint:disable-next-line:no-unused-expression
-    // @ts-ignore
     delete users[tmp];
     this.router.navigate(['/list']);
   }

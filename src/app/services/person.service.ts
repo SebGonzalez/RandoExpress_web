@@ -63,12 +63,12 @@ export class PersonsService {
   }
 
   updatePersonne(id: number, name: string, firstName: string, mail: string, password: string) {
-
     const user = new Personne(id, name, firstName, mail, password);
+    // @ts-ignore
     this.users[+id] = user;
     this.emitUser();
     this.httpClient
-      .put('http://localhost:4200/new-user/' + id, user)
+      .put('http://localhost:4200/list/' + id + 1, user)
       .subscribe(
         () => {
           console.log('Enregistrement terminé !');
