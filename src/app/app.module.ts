@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {HeaderComponent} from './commun/header/header.component';
 import {FooterComponent} from './commun/footer/footer.component';
 import {SigninComponent} from './commun/signin/signin.component';
-import {ListComponent} from './admin/list/list.component';
 import {UtilisateurFormComponent} from './admin/utilisateur-form/utilisateur-form.component';
 import {RandoFormComponent} from './admin/rando-form/rando-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -51,7 +50,6 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     SigninComponent,
-    ListComponent,
     UtilisateurFormComponent,
     RandoFormComponent,
     CarteComponent,

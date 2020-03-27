@@ -25,6 +25,9 @@ export class ListRandoComponent implements OnInit {
       }
     );
     this.randoService.emitRando();
+    console.log('les randos chargés : ')
+    console.log(this.rando);
+    console.log('ok');
   }
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnDestroy() {
@@ -36,4 +39,7 @@ export class ListRandoComponent implements OnInit {
     this.router.navigate(['/new-rando', id]);
   }
 
+  onViewRando(id: number) {
+    this.router.navigate(['/list-rando', id]);
+  }
 }
