@@ -36,4 +36,10 @@ export class ListRandoComponent implements OnInit {
     this.router.navigate(['/new-rando', id]);
   }
 
+  onDeleteRando(rando: Rando[], id: number) {
+    console.log('test',  id);
+    delete rando[0];
+    this.router.navigate(['/list-rando']);
+  }
+
 }
