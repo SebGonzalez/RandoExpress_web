@@ -1,20 +1,20 @@
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
+import {UserService} from './user.service';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
-  constructor(private authService: AuthService,
+  constructor(private userService: UserService,
               private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Promise<boolean> | boolean {
-    if (this.authService.isAuth) {
-      return true;
-    } else {
+    if (this.userService.jwt === '') {
       return false;
+    } else {
+      return true;
     }
   }
 }
