@@ -41,7 +41,10 @@ export class SigninComponent implements OnInit {
     this.userService.signIn(this.isAdmin, email, password).then(
       () => {
         console.log('Sign in successful!');
-        this.router.navigate(['Personne']);
+        this.router.navigate(['/list-rando']);
+      },
+      (error) => {
+        this.errorMessage = error;
       }
     );
   }

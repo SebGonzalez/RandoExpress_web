@@ -50,12 +50,12 @@ export class RandosService {
   }
 
   getRandoById(id: number) {
-    const rando = this.randonne.find(
-      (s) => {
-        return s.id === id;
+    for ( const r of this.randonne) {
+      // tslint:disable-next-line:triple-equals
+      if (r.id == id) {
+        return r;
       }
-    );
-    return rando;
+    }
   }
 
   addRando(rando: Rando) {
@@ -64,21 +64,16 @@ export class RandosService {
   }
 
   updateRando(id: number, name: string, ville: string, description: string, latitude: string,
-              longitude: string, heureDepart: string, dateDepart: string) {
-    const rando = new Rando(id, name, ville, latitude, description, longitude, heureDepart, dateDepart);
-    console.log('randododododo', rando);
-    this.randonne[id] = rando;
+              longitude: string, heureDepart: string, dateDepart: string, owner: Personne, persons: Personne[]) {
+    console.log('ID : ' + id);
+    const newRando = new Rando(id, name, ville, latitude, description, longitude, heureDepart, dateDepart, null, null);
+    const r = this.getRandoById(+newRando.id);
+    const index = this.randonne.indexOf(r);
+    console.log('Index : ' + index);
+    this.randonne[index] = newRando;
     this.emitRando();
-    this.httpClient
-      .put('http://localhost:4200/list-rando/' + id, rando)
-      .subscribe(
-        () => {
-          console.log('Enregistrement terminé !');
-        },
-        (error) => {
-          console.log('Erreur ! : ' + error);
-        }
-      );
+
+    console.log(this.randonne);
   }
 }
 

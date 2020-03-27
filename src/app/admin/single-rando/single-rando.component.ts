@@ -22,13 +22,15 @@ export class SingleRandoComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
-    this.nom = this.userService.getRandoById(+id).name;
-    this.ville = this.userService.getRandoById(+id).ville;
-    this.description = this.userService.getRandoById(+id).description;
-    this.dateDepart = this.userService.getRandoById(+id).dateDepart;
-    this.heureDepart = this.userService.getRandoById(+id).heureDepart;
-    this.longitude = this.userService.getRandoById(+id).longitude;
-    this.lattitude = this.userService.getRandoById(+id).latitude;
+    const rando = this.userService.getRandoById(+id);
+
+    this.nom = rando.name;
+    this.ville = rando.ville;
+    this.description = rando.description;
+    this.dateDepart = rando.dateDepart;
+    this.heureDepart = rando.heureDepart;
+    this.longitude = rando.longitude;
+    this.lattitude = rando.latitude;
   }
 
 }

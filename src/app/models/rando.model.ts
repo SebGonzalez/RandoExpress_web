@@ -8,7 +8,9 @@ export class Rando {
               public latitude: string,
               public longitude: string,
               public heureDepart: string,
-              public dateDepart: string
+              public dateDepart: string,
+              public owner: Personne,
+              public persons: Personne[]
   ) {
 
   }
