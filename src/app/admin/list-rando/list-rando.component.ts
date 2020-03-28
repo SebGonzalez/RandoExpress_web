@@ -43,10 +43,11 @@ export class ListRandoComponent implements OnInit {
   }
 
   onDeleteRando(rando: Rando[], id: number) {
-    const tmp = this.randoService.getRandoById(id);
-    // @ts-ignore
-    rando.splice(tmp, 1);
-    this.router.navigate(['/list-rando']);
+    this.randoService.deleteRando(id).then(
+      () => {
+        this.router.navigate(['/list-rando']);
+      }
+    );
   }
   onViewRando(id: number) {
     this.router.navigate(['/list-rando', id]);

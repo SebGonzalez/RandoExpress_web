@@ -54,13 +54,19 @@ export class NewUserComponent implements OnInit {
         formValue.password
       );
 
-      this.personsService.addPersonne(Newuser);
-      this.router.navigate(['/list']);
+      this.personsService.addPersonne(Newuser).then(
+        () => {
+          this.router.navigate(['/list']);
+        }
+      );
 
     } else {
       this.personsService.updatePersonne(this.id, formValue.name, formValue.firstName,
-        formValue.mail, formValue.password);
-      this.router.navigate(['/list']);
+        formValue.mail, formValue.password).then(
+        () => {
+          this.router.navigate(['/list']);
+        }
+      );
     }
   }
 }

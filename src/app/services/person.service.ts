@@ -61,6 +61,30 @@ export class PersonsService {
   addPersonne(user: Personne) {
     this.users.push(user);
     this.emitUser();
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    // tslint:disable-next-line:max-line-length
+    const body = '{ "id" : "' + user.id + '", "name" : "' + user.name + '", "firstName" : "' + user.firstName + '", "mail" : "' + user.mail + '", "password" : "' + user.password + '"}';
+    return new Promise(
+      (resolve, reject) => {
+          const url  = 'http://localhost:4200/RandoExpress_API/ws/rest/personne';
+          this.httpClient
+            .post(url, body, httpOptions)
+            .subscribe(
+              (response) => {
+                  resolve();
+              },
+              (error) => {
+                console.log('Erreur ! : ' + error);
+              }
+            );
+
+      }
+    );
   }
 
   updatePersonne(id: number, name: string, firstName: string, mail: string, password: string) {
@@ -72,5 +96,61 @@ export class PersonsService {
     const index = this.users.indexOf(r);
     this.users[index] = newUser;
     this.emitUser();
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.userService.jwt
+      })
+    };
+    // tslint:disable-next-line:max-line-length
+    const body = '{ "id" : "' + user.id + '", "name" : "' + user.name + '", "firstName" : "' + user.firstName + '", "mail" : "' + user.mail + '", "password" : "' + user.password + '"}';
+    return new Promise(
+      (resolve, reject) => {
+        const url  = 'http://localhost:4200/RandoExpress_API/ws/rest/personne';
+        this.httpClient
+          .put(url, body, httpOptions)
+          .subscribe(
+            (response) => {
+              resolve();
+            },
+            (error) => {
+              console.log('Erreur ! : ' + error);
+            }
+          );
+
+      }
+    );
+  }
+
+  deletePersonne(id: number) {
+    const tmp = this.getUserById(id);
+    const index = this.users.indexOf(tmp);
+    delete this.users[index];
+    this.emitUser();
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.userService.jwt
+      })
+    };
+    // tslint:disable-next-line:max-line-length
+    return new Promise(
+      (resolve, reject) => {
+        const url  = 'http://localhost:4200/RandoExpress_API/ws/rest/personne/' + id;
+        this.httpClient
+          .delete(url, httpOptions)
+          .subscribe(
+            (response) => {
+              resolve();
+            },
+            (error) => {
+              console.log('Erreur ! : ' + error);
+            }
+          );
+
+      }
+    );
   }
 }

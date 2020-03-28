@@ -57,19 +57,22 @@ export class NewRandoComponent implements OnInit {
         formValue.longitude,
         formValue.heureDepart,
         formValue.dateDepart,
-        null, null
+        null, []
+      );
+      this.randoService.addRando(NewRando).then(
+        () => {
+          this.router.navigate(['/list-rando']);
+        }
       );
 
-      this.randoService.addRando(NewRando);
-      this.router.navigate(['/list-rando']);
-
     } else {
-      console.log('formValue', formValue.id);
-      console.log('formValue', formValue);
       this.randoService.updateRando(this.id, formValue.name, formValue.ville,
         formValue.description, formValue.latitude, formValue.longitude,
-        formValue.heureDepart, formValue.dateDepart, this.randoEdit.owner, this.randoEdit.persons);
-      this.router.navigate(['/list-rando']);
+        formValue.heureDepart, formValue.dateDepart, this.randoEdit.owner, this.randoEdit.persons).then(
+        () => {
+          this.router.navigate(['/list-rando']);
+        }
+      );
 
     }
   }

@@ -34,15 +34,15 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   onEditUser(id: number) {
-    console.log('id : edition', id)
     this.router.navigate(['/new-user', id]);
   }
 
   onDeleteUser(users: Personne[], id: number) {
-    const tmp = id - 1;
-    // tslint:disable-next-line:no-unused-expression
-    delete users[tmp];
-    this.router.navigate(['/list']);
+    this.personsService.deletePersonne(id).then(
+      () => {
+        this.router.navigate(['/list']);
+      }
+    );
   }
 
 }
