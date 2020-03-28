@@ -34,7 +34,6 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   onEditUser(id: number) {
-    const tmp = id - 1;
     console.log('id : edition', id)
     this.router.navigate(['/new-user', id]);
   }

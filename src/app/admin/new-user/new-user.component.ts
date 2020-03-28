@@ -22,18 +22,18 @@ export class NewUserComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
+    console.log('this.id', this.id);
     if (this.id) {
-      this.userEdit = this.personsService.getSingleUser(this.id - 1);
+      this.userEdit = this.personsService.getUserById(this.id);
       console.log('this.useredit', this.userEdit);
     } else {
-      this.userEdit = new Personne(0, '', '', '', '');
+      this.userEdit = new Personne(-1, '', '', '', '');
     }
     this.initForm();
   }
 
   initForm() {
     this.userForm = this.formBuilder.group({
-        id : [this.userEdit.id],
         name: [this.userEdit.name, Validators.required],
         firstName: [this.userEdit.firstName, Validators.required],
         mail: [this.userEdit.mail, [Validators.required, Validators.email]],
@@ -44,13 +44,9 @@ export class NewUserComponent implements OnInit {
 
   onSubmitForm(id: number, name: string, firstName: string, mail: string, password: string) {
     const formValue = this.userForm.value;
+    if (this.userEdit.id === -1) {
 
-    if (this.id) {
-      this.personsService.updatePersonne(this.userEdit.id - 1 , formValue.name, formValue.firstName, formValue.mail, formValue.password);
-      this.router.navigate(['/list']);
-      return true;
-    } else {
-      const NewUser = new Personne(
+      const Newuser = new Personne(
         formValue.id = this.personsService.users[this.personsService.users.length - 1].id + 1,
         formValue.name,
         formValue.firstName,
@@ -58,7 +54,12 @@ export class NewUserComponent implements OnInit {
         formValue.password
       );
 
-      this.personsService.addPersonne(NewUser);
+      this.personsService.addPersonne(Newuser);
+      this.router.navigate(['/list']);
+
+    } else {
+      this.personsService.updatePersonne(this.id, formValue.name, formValue.firstName,
+        formValue.mail, formValue.password);
       this.router.navigate(['/list']);
     }
   }

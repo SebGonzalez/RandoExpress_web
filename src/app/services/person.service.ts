@@ -5,6 +5,7 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import {Subject} from 'rxjs';
 import {AbstractControl, ValidationErrors} from '@angular/forms';
 import {UserService} from './user.service';
+import {Rando} from "../models/rando.model";
 
 @Injectable({
   providedIn: 'root'
@@ -49,12 +50,12 @@ export class PersonsService {
   }
 
   getUserById(id: number) {
-    const user = this.users.find(
-      (s) => {
-        return s.id === id;
+    for ( const u of this.users) {
+      // tslint:disable-next-line:triple-equals
+      if (u.id == id) {
+        return u;
       }
-    );
-    return user;
+    }
   }
 
   addPersonne(user: Personne) {
@@ -64,18 +65,12 @@ export class PersonsService {
 
   updatePersonne(id: number, name: string, firstName: string, mail: string, password: string) {
     const user = new Personne(id, name, firstName, mail, password);
-    // @ts-ignore
-    this.users[+id] = user;
+
+    console.log('ID : ' + id);
+    const newUser = new Personne(id, name, firstName, mail, password);
+    const r = this.getUserById(+newUser.id);
+    const index = this.users.indexOf(r);
+    this.users[index] = newUser;
     this.emitUser();
-    this.httpClient
-      .put('http://localhost:4200/list/' + id + 1, user)
-      .subscribe(
-        () => {
-          console.log('Enregistrement terminé !');
-        },
-        (error) => {
-          console.log('Erreur ! : ' + error);
-        }
-      );
   }
 }

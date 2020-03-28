@@ -47,9 +47,9 @@ export class NewRandoComponent implements OnInit {
 
   onSubmitForm() {
     const formValue = this.randoForm.value;
-    if (this.id === -1) {
+    if (this.randoEdit.id === -1) {
       const NewRando = new Rando(
-        formValue.id = null,
+        formValue.id = this.randoService.randonne[this.randoService.randonne.length - 1].id + 1,
         formValue.name,
         formValue.ville,
         formValue.description,
