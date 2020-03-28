@@ -1,18 +1,22 @@
+<div class="bouton-new text-center" style="width:8%; color: white;">
 <a routerLink="/new-user">Nouvelle utilisateur</a>
+</div>
 <div class="list-group">
-
 
   <div *ngFor="let user of users">
     <div *ngIf="user">
-      <li class="list-group-item">
-        <a [routerLink]="[user.id]">
-          <h3> {{user.name}} {{user.firstName}}</h3>
-          <p>{{user.mail}}</p></a>
-        <a [routerLink]="[user.id]">Détail profil</a>
+      <li class="list-group-item text-center">
+        <div class="contour">
+          <a class="bouton-edit" [routerLink]="[user.id]">
+            <h3> {{user.name}} {{user.firstName}}</h3>
+            <p>{{user.mail}}</p>
+          </a>
+          <a class="bouton-edit" style="width: 10%; text-align: center;" [routerLink]="[user.id]">Détail profil</a>
 
-        <button class="bouton-edit" (click)="onEditUser(user.id)">Edition du profil</button>
+          <button class="bouton-edit" (click)="onEditUser(user.id)">Edition du profil</button>
 
-        <button class="bouton-edit" (click)="onDeleteUser(users, user.id)">Supression du profil du profil</button>
+          <button class="bouton-edit" (click)="onDeleteUser(users, user.id)">Supression du profil du profil</button>
+        </div>
       </li>
     </div>
   </div>

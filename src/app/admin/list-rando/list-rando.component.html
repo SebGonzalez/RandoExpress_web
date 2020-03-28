@@ -1,15 +1,22 @@
-<a routerLink="/new-rando">Nouvelle Randonnée</a>
+<div class="bouton-new text-center" style="width:8%; color: white;">
+  <a routerLink="/new-rando">Nouvelle randonnée</a>
+</div>
 <div class="list-group">
   <div *ngFor="let randodo of rando">
     <div *ngIf="randodo">
-  <li class="list-group-item">
-      <h3> nom : {{randodo.name}} Ville: {{randodo.ville}}</h3>
-      <p>Description :  {{randodo.description}}</p>
-    <a (click)="onViewRando(randodo.id)">Détails</a>
-    <button class="bouton-edit" (click)="onEditRando(randodo.id)">Edition du profil</button>
+      <li class="list-group-item">
+        <div class="contour">
+          <a class="bouton-edit" [routerLink]="[randodo.id]">
+            <h3>{{randodo.name}}</h3>
+            <h3> Ville: {{randodo.ville}}</h3>
+            <p>Description :  {{randodo.description}}</p>
+          </a>
+          <a class="bouton-edit" style="width: 10%; text-align: center;" (click)="onViewRando(randodo.id)">Détails</a>
+          <button class="bouton-edit" (click)="onEditRando(randodo.id)">Edition du profil</button>
 
-    <button class="bouton-edit" (click)="onDeleteRando(rando, randodo.id)">Supression de la randonnée</button>
-  </li>
+          <button class="bouton-edit" (click)="onDeleteRando(rando, randodo.id)">Supression de la randonnée</button>
+        </div>
+      </li>
     </div>
   </div>
 </div>
