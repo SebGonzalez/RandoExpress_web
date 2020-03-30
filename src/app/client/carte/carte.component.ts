@@ -1,3 +1,11 @@
+/**
+ * @memberof app
+ * @ngdoc carte
+ * @name CarteComponent
+ * @description
+ *    Notre component permet d'afficher la carte ainsi que les élements liés à celle-ci.
+ */
+
 import {Component, OnInit} from '@angular/core';
 import * as L from 'leaflet';
 
@@ -26,6 +34,10 @@ export class CarteComponent implements OnInit {
       nom: 'Parc du Mont Boron'
     }
   ];
+
+  /**
+   * @memberof CarteComponent
+   */
   ngOnInit() {
     // Déclaration de la carte avec les coordonnées du centre
     const myfrugalmap = L.map('frugalmap').locate({setView: true, maxZoom: 16});
@@ -57,14 +69,6 @@ export class CarteComponent implements OnInit {
     }
     myfrugalmap.on('locationfound', onLocationFound);
   }
-  getDifficulteEz() {
-    return this.Ez;
-  }
-
-  getDifficulteMidle() {
-    return this.Midle;
-  }
-
 }
 
 

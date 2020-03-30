@@ -1,3 +1,15 @@
+/**
+ * @memberof app
+ * @ngdoc new-user
+ * @name NewUserComponent
+ * @param {FormBuilder} formBuilder
+ * @param {ActivatedRoute} route
+ * @param {Router} router
+ * @param {PersonsService} personsService
+ * @description
+ *    Notre component permet de gérer le formulaire de création d'une personne .
+ */
+
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -19,7 +31,11 @@ export class NewUserComponent implements OnInit {
               private personsService: PersonsService,
               private router: Router) {
   }
-
+  /**
+   * @memberof NewUserComponent
+   * @description
+   * Initialisation d'un utilisateur ou récupération de celui-ci.
+   */
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
     console.log('this.id', this.id);
@@ -32,6 +48,12 @@ export class NewUserComponent implements OnInit {
     this.initForm();
   }
 
+  /**
+   * @memberof NewUserComponent
+   * @description
+   * Récupération informations formulaire.
+   */
+
   initForm() {
     this.userForm = this.formBuilder.group({
         name: [this.userEdit.name, Validators.required],
@@ -41,6 +63,13 @@ export class NewUserComponent implements OnInit {
       }
     );
   }
+
+  /**
+   * @memberof NewUserComponent
+   * @returns {router}
+   * @description
+   * Création d'un utilisateur ou edition d'une existant.
+   */
 
   onSubmitForm(id: number, name: string, firstName: string, mail: string, password: string) {
     const formValue = this.userForm.value;

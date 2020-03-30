@@ -1,3 +1,17 @@
+/**
+ * @memberof app
+ * @ngdoc new-rando
+ * @name ListRandoComponent
+ * @param {FormBuilder} formBuilder
+ * @param {RandosService} randoService
+ * @param {ActivatedRoute} route
+ * @param {Router} router
+ * @param {PersonsService} personsService
+ * @description
+ *    Notre component permet de gérer le formulaire de création d'une randonnée .
+ */
+
+
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RandosService} from '../../services/randos.service';
@@ -28,6 +42,11 @@ export class NewRandoComponent implements OnInit, OnDestroy {
               private personsService: PersonsService) {
   }
 
+  /**
+   * @memberof NewRandoComponent
+   * @description
+   * Initialisation d'une randonnée ou récupération de celle-ci.
+   */
   ngOnInit() {
     this.userSubcription = this.personsService.userSubject.subscribe(
       (users: Personne[]) => {
@@ -49,6 +68,11 @@ export class NewRandoComponent implements OnInit, OnDestroy {
     this.userSubcription.unsubscribe();
   }
 
+  /**
+   * @memberof NewRandoComponent
+   * @description
+   * Récupération informations formulaire.
+   */
   initForm() {
     this.randoForm = this.formBuilder.group({
         name: [this.randoEdit.name],
@@ -62,6 +86,13 @@ export class NewRandoComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  /**
+   * @memberof NewRandoComponent
+   * @returns {router}
+   * @description
+   * Création d'une randonnée ou edition d'une existante.
+   */
   onSubmitForm() {
     const formValue = this.randoForm.value;
 

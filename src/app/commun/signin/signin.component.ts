@@ -1,3 +1,14 @@
+/**
+ * @memberof app
+ * @ngdoc signin
+ * @name SigninComponent
+ * @param {FormBuilder} formBuilder
+ * @param {UserService} userService
+ * @param {Router} router
+ * @description
+ *    Notre component permet de gérer la connexion des administrateurs pour pouvoir gérer l'application.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
@@ -26,13 +37,25 @@ export class SigninComponent implements OnInit {
     }
   }
 
+  /**
+   * @memberof SigninComponent
+   * @returns {Observable}
+   * @description
+   * Récupération informtions formulaire
+   */
+
   initForm() {
     this.signinForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
     });
   }
-
+  /**
+   * @memberof SigninComponent
+   * @returns {Observable}
+   * @description
+   * Connexion si email et password sont corrects
+   */
   onSignIn() {
     console.log('test connexion')
     const email = this.signinForm.get('email').value;
@@ -48,6 +71,11 @@ export class SigninComponent implements OnInit {
       }
     );
   }
+  /**
+   * @memberof SigninComponent
+   * @description
+   *  Permet la deconnexion.
+   */
 
   onSignOut() {
     this.userService.signOut();

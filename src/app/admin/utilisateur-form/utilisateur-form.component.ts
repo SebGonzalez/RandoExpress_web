@@ -20,6 +20,11 @@ export class UtilisateurFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * @memberof UtilisateurFormComponent
+   * @param {NgForm} form
+   * @returns {router}
+   */
   onSubmit(form: NgForm) {
     const nom = form.value.nom;
     const prenom = form.value.prenom;

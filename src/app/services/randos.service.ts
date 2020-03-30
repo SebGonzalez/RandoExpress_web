@@ -1,3 +1,14 @@
+/**
+ * @memberof app
+ * @ngdoc randos.service
+ * @name RandosService
+ * @param {HttpClient} httpClient
+ * @param {Router} router
+ * @param {UserService} userService
+ * @description
+ *    Notre service sert à gérer l'ajout, la modification et la suppression d'une randonnée.
+ */
+
 import {Injectable} from '@angular/core';
 import {Personne} from '../models/personne.model';
 import {Rando} from '../models/rando.model';
@@ -17,7 +28,12 @@ export class RandosService {
   constructor(private httpClient: HttpClient, private router: Router, private userService: UserService) {
     this.getUsersFromBack();
   }
-
+  /**
+   * @memberof RandosService
+   * @description
+   * @returns Observable
+   * Récupération de toutes les données de L'API.
+   */
   getUsersFromBack() {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -41,14 +57,21 @@ export class RandosService {
       );
   }
 
+  /**
+   * @memberof RandosService
+   * @description
+   * Emition d'une randonnée..
+   */
+
   emitRando() {
     this.randoSubject.next(this.randonne.slice());
   }
-
-  getSingleRando(id: number) {
-    return this.randonne[id];
-  }
-
+  /**
+   * @memberof RandosService
+   * @returns Observable
+   * @description
+   * Récupération d'une randonnée à l'aide de son ID.
+   */
   getRandoById(id: number) {
     for ( const r of this.randonne) {
       // tslint:disable-next-line:triple-equals
@@ -57,7 +80,13 @@ export class RandosService {
       }
     }
   }
-
+  /**
+   * @memberof RandosService
+   * @param {Rando} rando
+   * @returns Observable
+   * @description
+   * Ajouter une randonnée.
+   */
   addRando(rando: Rando) {
     this.randonne.push(rando);
     this.emitRando();
@@ -102,7 +131,22 @@ export class RandosService {
       }
     );
   }
-
+  /**
+   * @memberof RandosService
+   * @param {number} id
+   * @param {string} name
+   * @param {string} ville
+   * @param {string} description
+   * @param {string} latitude
+   * @param {string} longitude
+   * @param {string} heureDepart
+   * @param {string} dateDepart
+   * @param {Personne} owner
+   * @param {Personne[]} persons
+   * @returns Observable
+   * @description
+   *  Edition d'une randonnée.
+   */
   updateRando(id: number, name: string, ville: string, description: string, latitude: string,
               longitude: string, heureDepart: string, dateDepart: string, owner: Personne, persons: Personne[]) {
     const newRando = new Rando(id, name, ville, latitude, description, longitude, heureDepart, dateDepart, null, null);
@@ -146,7 +190,13 @@ export class RandosService {
       }
     );
   }
-
+  /**
+   * @memberof RandosService
+   * @param {number} id
+   * @returns Observable
+   * @description
+   * Suppression d'une randonnée.
+   */
   deleteRando(id: number) {
     const tmp = this.getRandoById(id);
     const index = this.randonne.indexOf(tmp);
