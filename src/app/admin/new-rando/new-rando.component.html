@@ -1,6 +1,12 @@
 <div class="col-sm-8 col-sm-offset-2">
   <form [formGroup]="randoForm" (ngSubmit)="onSubmitForm()">
     <div class="form-group">
+      <label for="users"> Nom de l'organisateur</label>
+      <select id="users" class="form-control" formControlName="users">
+          <option [value]="user.id" *ngFor="let user of users">{{user.name }} {{user.firstName}}</option>
+      </select>
+
+
       <label for="name"> Nom de la randonnée</label>
       <input type="text" class="form-control" id="name" formControlName="name">
     </div>

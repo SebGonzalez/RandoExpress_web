@@ -1,11 +1,17 @@
-<h2>nom : {{nom}}</h2>
-<h2> prenom : {{ville}}</h2>
-<h2>mail : {{description}}</h2>
-<h2>mot de passe : {{heureDepart}}</h2>
-<h2>nom : {{dateDepart}}</h2>
-<h2> prenom : {{longitude}}</h2>
-<h2>mail : {{lattitude}}</h2>
-
-
-
+<div class="container">
+  <div class="list-group">
+    <h1 class="text-center">Détails de la randonnée</h1>
+    <div class="contour">
+      <h2 class="bouton-edit">Organisateur : {{ownerName}} {{ownerFirstName}}</h2>
+      <h2 class="bouton-edit">Nom de la randonnée : {{nom}}</h2>
+      <h2 class="bouton-edit"> Ville : {{ville}}</h2>
+      <h2 class="bouton-edit">Description de la randonnée : {{description}}</h2>
+      <h2 class="bouton-edit">Date de la randonnée : {{dateDepart}}</h2>
+      <h2 class="bouton-edit">Heure de départ : {{heureDepart}}</h2>
+      <h2 class="bouton-edit"> Longitude : {{longitude}}</h2>
+      <h2 class="bouton-edit">Latitude : {{lattitude}}</h2>
+    </div>
+    <a  href="../list-rando" class="bouton-edit" style="width: 6%; padding:3px; text-align: center;">Retour</a>
+  </div>
+</div>
 

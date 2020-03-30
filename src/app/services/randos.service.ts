@@ -69,10 +69,15 @@ export class RandosService {
       })
     };
     // tslint:disable-next-line:max-line-length
-    let body = '{ "id" : "' + rando.id + '", "name" : "' + name + '", "ville" : "' + rando.ville + '", "description" : "' + rando.description + '", "latitude" : "' + rando.latitude + '", "longitude" : "' + rando.longitude + '", "heureDepart" : "' + rando.heureDepart + '", "dateDepart" : "' + rando.dateDepart + '", "owner" : { "id" : "' + rando.owner.id + '", "name" : "' + rando.owner.name + '", "firstName" : "' + rando.owner.firstName + '", "mail" : "' + rando.owner.mail + '", "password" : "' + rando.owner.password + '" }, "persons" : [';
+    let body = '{ "id" : "' + rando.id + '", "name" : "' + name + '", "ville" : "' + rando.ville + '",' +
+      ' "description" : "' + rando.description + '", "latitude" : "' + rando.latitude + '", "longitude" : "' +
+      rando.longitude + '", "heureDepart" : "' + rando.heureDepart + '", "dateDepart" : "' + rando.dateDepart +
+      '", "owner" : { "id" : "' + rando.owner.id + '", "name" : "' + rando.owner.name + '", "firstName" : "' +
+      rando.owner.firstName + '", "mail" : "' + rando.owner.mail + '", "password" : "' + rando.owner.password + '" }, "persons" : [';
     for (const p of rando.persons) {
       // tslint:disable-next-line:max-line-length
-      body += '{ "id" : "' + p.id + '", "name" : "' + p.name + '", "firstName" : "' + p.firstName + '", "mail" : "' + p.mail + '", "password" : "' + p.password + '" },';
+      body += '{ "id" : "' + p.id + '", "name" : "' + p.name + '", "firstName" : "' + p.firstName + '", "mail" : "' + p.mail +
+        '", "password" : "' + p.password + '" },';
     }
 
     body = body.substring(0, body.length - 1);

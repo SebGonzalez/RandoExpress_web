@@ -5,6 +5,7 @@ import {RandosService} from '../../services/randos.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Rando} from '../../models/rando.model';
 
+
 @Component({
   selector: 'app-list-rando',
   templateUrl: './list-rando.component.html',
@@ -24,14 +25,11 @@ export class ListRandoComponent implements OnInit {
     this.randoSubcription = this.randoService.randoSubject.subscribe(
       (rando: Rando[]) => {
         this.rando = rando;
+        console.log('this.rando', this.rando);
       }
     );
     this.randoService.emitRando();
-    console.log('les randos chargés : ')
-    console.log(this.rando);
-    console.log('ok');
   }
-
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnDestroy() {
     this.randoSubcription.unsubscribe();
