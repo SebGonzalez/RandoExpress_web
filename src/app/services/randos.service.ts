@@ -98,19 +98,11 @@ export class RandosService {
       })
     };
     // tslint:disable-next-line:max-line-length
-    let body = '{ "id" : "' + rando.id + '", "name" : "' + name + '", "ville" : "' + rando.ville + '",' +
+    const body = '{ "id" : "' + rando.id + '", "name" : "' + name + '", "ville" : "' + rando.ville + '",' +
       ' "description" : "' + rando.description + '", "latitude" : "' + rando.latitude + '", "longitude" : "' +
       rando.longitude + '", "heureDepart" : "' + rando.heureDepart + '", "dateDepart" : "' + rando.dateDepart +
       '", "owner" : { "id" : "' + rando.owner.id + '", "name" : "' + rando.owner.name + '", "firstName" : "' +
-      rando.owner.firstName + '", "mail" : "' + rando.owner.mail + '", "password" : "' + rando.owner.password + '" }, "persons" : [';
-    for (const p of rando.persons) {
-      // tslint:disable-next-line:max-line-length
-      body += '{ "id" : "' + p.id + '", "name" : "' + p.name + '", "firstName" : "' + p.firstName + '", "mail" : "' + p.mail +
-        '", "password" : "' + p.password + '" },';
-    }
-
-    body = body.substring(0, body.length - 1);
-    body += ' ] }';
+      rando.owner.firstName + '", "mail" : "' + rando.owner.mail + '", "password" : "' + rando.owner.password + '" }, "persons" : [] }';
 
     console.log(body);
 
@@ -149,7 +141,7 @@ export class RandosService {
    */
   updateRando(id: number, name: string, ville: string, description: string, latitude: string,
               longitude: string, heureDepart: string, dateDepart: string, owner: Personne, persons: Personne[]) {
-    const newRando = new Rando(id, name, ville, latitude, description, longitude, heureDepart, dateDepart, null, null);
+    const newRando = new Rando(id, name, ville, latitude, description, longitude, heureDepart, dateDepart, owner, persons);
     const r = this.getRandoById(+newRando.id);
     const index = this.randonne.indexOf(r);
     this.randonne[index] = newRando;
@@ -168,9 +160,12 @@ export class RandosService {
       body += '{ "id" : "' + p.id + '", "name" : "' + p.name + '", "firstName" : "' + p.firstName + '", "mail" : "' + p.mail + '", "password" : "' + p.password + '" },';
     }
 
-    body = body.substring(0, body.length - 1);
+    if (persons.length > 0) {
+      body = body.substring(0, body.length - 1);
+    }
     body += ' ] }';
 
+    console.log('LA requete : ');
     console.log(body);
 
     return new Promise(

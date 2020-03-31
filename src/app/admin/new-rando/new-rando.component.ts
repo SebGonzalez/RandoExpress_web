@@ -117,6 +117,11 @@ export class NewRandoComponent implements OnInit, OnDestroy {
       );
 
     } else {
+      console.log('Le user : ');
+      console.log(formValue.users);
+      if (!formValue.users) {
+        formValue.users = this.randoEdit.owner;
+      }
       this.randoService.updateRando(this.id, formValue.name, formValue.ville,
         formValue.description, formValue.latitude, formValue.longitude,
         formValue.heureDepart, formValue.dateDepart, formValue.users, this.randoEdit.persons).then(

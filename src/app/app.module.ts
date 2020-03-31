@@ -29,19 +29,18 @@ const appRoutes: Routes = [
   {path: 'carte', component: CarteComponent},
   {path: 'auth', component: SigninComponent},
   {path: 'admin/auth', component: SigninComponent},
-  {path: 'admin', component: PageAdminComponent},
-  {path: 'rando', component: RandoFormComponent},
-  {path: 'user', component: UtilisateurFormComponent},
-  {path: 'test', component: UserComponent},
-  {path: 'list', component: UserListComponent},
-  {path: 'list/:id', component: SingleUserComponent},
-  {path: 'list-rando/:id', component: SingleRandoComponent},
-  {path: 'new-user', component: NewUserComponent},
-  {path: 'new-user/:id', component: NewUserComponent},
-  {path: 'new-rando', component: NewRandoComponent},
-  {path: 'new-rando/:id', component: NewRandoComponent},
-  {path: 'list-rando', component: ListRandoComponent},
-  {path: '', component: CarteComponent}
+  {path: 'admin', canActivate: [AuthGuardService], component: PageAdminComponent},
+  {path: 'rando', canActivate: [AuthGuardService], component: RandoFormComponent},
+  {path: 'user', canActivate: [AuthGuardService], component: UtilisateurFormComponent},
+  {path: 'list', canActivate: [AuthGuardService], component: UserListComponent},
+  {path: 'list/:id', canActivate: [AuthGuardService], component: SingleUserComponent},
+  {path: 'list-rando/:id', canActivate: [AuthGuardService], component: SingleRandoComponent},
+  {path: 'new-user', canActivate: [AuthGuardService], component: NewUserComponent},
+  {path: 'new-user/:id', canActivate: [AuthGuardService], component: NewUserComponent},
+  {path: 'new-rando', canActivate: [AuthGuardService], component: NewRandoComponent},
+  {path: 'new-rando/:id', canActivate: [AuthGuardService], component: NewRandoComponent},
+  {path: 'list-rando', canActivate: [AuthGuardService], component: ListRandoComponent},
+  {path: '', canActivate: [AuthGuardService], component: PageAdminComponent}
 ];
 
 @NgModule({

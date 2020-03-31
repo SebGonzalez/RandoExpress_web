@@ -11,11 +11,9 @@
             <h3> Ville: {{randodo.ville}}</h3>
             <p>Description :  {{randodo.description}}</p>
           </a>
-          <a class="bouton-edit" style="width: 10%; text-align: center;" (click)="onViewRando(randodo.id)">Détails</a>
+          <a class="bouton-edit" style="width: 10%; text-align: center;" [routerLink]="[randodo.id]">Détail de la randonnée</a>
 
-          <a class="bouton-edit" style="width: 10%; text-align: center;" [routerLink]="[randodo.id]">Détail profil</a>
-
-          <button class="bouton-edit" (click)="onEditRando(randodo.id)">Edition du profil</button>
+          <button class="bouton-edit" (click)="onEditRando(randodo.id)">Edition de la randonnée</button>
 
           <button class="bouton-edit" (click)="onDeleteRando(rando, randodo.id)">Supression de la randonnée</button>
         </div>

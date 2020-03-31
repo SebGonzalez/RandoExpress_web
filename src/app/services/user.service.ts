@@ -12,7 +12,7 @@ export class UserService {
   isAdmin: boolean;
 
   constructor(private httpClient: HttpClient, private router: Router) {
-      this.jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhdXRoMCJ9.izVguZPRsBQ5Rqw6dhMvcIwy8_9lQnrO3vpxGwPCuzs';
+      this.jwt = '';
   }
   signIn(isAdmin: boolean, email: string, password: string) {
     console.log('test co 2');
